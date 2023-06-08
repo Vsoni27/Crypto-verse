@@ -60,10 +60,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/exchanges" element={<Exchange />} />
-          <Route path="/news" element={<News simplified={false}/>} />
-          <Route path="/cryptocurrencies" element={<CryptoCurrencies simplified = {false}/>} />
+          <Route path="/news" element={<News simplified={false} />} />
+          <Route
+            path="/cryptocurrencies"
+            element={<CryptoCurrencies simplified={false} />}
+          />
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/crypto/:coinId" element={<CryptoDetails />} />
         </Routes>
       </div>
     </div>

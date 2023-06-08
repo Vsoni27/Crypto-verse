@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import cryptoLoading from "../assets/cryptoLoading2.json";
 import millify from "millify";
 import { Input } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const CryptoCurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;
@@ -45,28 +46,30 @@ const CryptoCurrencies = ({ simplified }) => {
       )}
       <div className="grid grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-6">
         {cryptos?.map((crypto) => (
-          <div
-            className="p-4 bg-white rounded-lg hover:shadow-2xl shadow-indigo-500/40 cursor-pointer transform transition-transform duration-300 hover:scale-110"
-            key={crypto.uuid}
-          >
-            <div className="flex items-center justify-between mb-3 sm:mb-5">
-              <h1 className="font-bold">
-                {crypto.rank}. {crypto.name}
-              </h1>
-              <hr className="" />
-              <img src={crypto.iconUrl} alt="" className="h-8 rounded-full" />
+          <Link key={crypto.uuid} to={`/crypto/${crypto.uuid}`}>
+            <div
+              className="p-4 bg-white rounded-lg hover:shadow-2xl shadow-indigo-500/40 cursor-pointer transform transition-transform duration-300 hover:scale-110"
+              key={crypto.uuid}
+            >
+              <div className="flex items-center justify-between mb-3 sm:mb-5">
+                <h1 className="font-bold">
+                  {crypto.rank}. {crypto.name}
+                </h1>
+                <hr className="" />
+                <img src={crypto.iconUrl} alt="" className="h-8 rounded-full" />
+              </div>
+              <hr className="size-2 mb-3 sm:mb-5" />
+              <div>
+                <p className="text-sm mb-2 font-semibold">Price: {millify(crypto.price)}</p>
+                <p className="text-sm mb-2 font-semibold">
+                  Market Cap: {millify(crypto.marketCap)}
+                </p>
+                <p className="text-sm mb-2 font-semibold">
+                  DailyChange: {millify(crypto.change)}%
+                </p>
+              </div>
             </div>
-            <hr className="size-2 mb-3 sm:mb-5" />
-            <div>
-              <p className="text-sm mb-2">Price: {millify(crypto.price)}</p>
-              <p className="text-sm mb-2">
-                Market Cap: {millify(crypto.marketCap)}
-              </p>
-              <p className="text-sm mb-2">
-                DailyChange: {millify(crypto.change)}%
-              </p>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
